@@ -37,39 +37,55 @@ function ActionCell() {
   )
 }
 
-// Column definitions. The grid calls these renderers with each row's data.
+// Column definitions. Minimum widths fit each column's content, including cell padding.
+// SummaryGrid hides columns when the grid is too narrow for their minimums, so no horizontal scrollbar appears.
 export const GRID_COLUMNS = [
-  { colId: 'sev', headerName: 'Severity', field: 'sev', width: 150, cellRenderer: SeverityCell },
+  {
+    colId: 'sev',
+    headerName: 'Severity',
+    field: 'sev',
+    width: 120,
+    minWidth: 110,
+    cellRenderer: SeverityCell,
+  },
   {
     colId: 'fund',
     headerName: 'Fund',
     field: 'fund',
     flex: 1.2,
-    minWidth: 180,
+    minWidth: 70,
     cellClass: 'sm-cell-fund',
   },
-  { colId: 'reason', headerName: 'Reason', field: 'reason', flex: 1, minWidth: 120 },
+  { colId: 'reason', headerName: 'Reason', field: 'reason', flex: 1, minWidth: 80 },
   {
     colId: 'expected',
     headerName: 'Expected Value from/to',
     field: 'expected',
     flex: 1.4,
-    minWidth: 170,
+    minWidth: 120,
   },
-  { colId: 'status', headerName: 'Status', field: 'status', width: 170, cellRenderer: StatusCell },
+  {
+    colId: 'status',
+    headerName: 'Status',
+    field: 'status',
+    width: 150,
+    minWidth: 140,
+    cellRenderer: StatusCell,
+  },
   {
     colId: 'created',
     headerName: 'Date Created',
     field: 'created',
     flex: 1.2,
-    minWidth: 180,
+    minWidth: 120,
     valueFormatter: (params) => (params.value ? formatDateTime(params.value) : ''),
   },
   {
     colId: 'actions',
     headerName: 'Actions',
     field: 'id',
-    width: 150,
+    width: 136,
+    minWidth: 136,
     cellRenderer: ActionCell,
     sortable: false,
   },

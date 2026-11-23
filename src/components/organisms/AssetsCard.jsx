@@ -36,7 +36,7 @@ export default function AssetsCard({ onViewReports }) {
 
         <div className="card-body" id="assets">
           <div className="metric-grid">
-            <Metric label="Rabbit Activity">
+            <Metric label="Rabbit Activity" className="metric-activity">
               <div className="check-big">{data.caught ? <TickBigIcon /> : <TriangleIcon />}</div>
               <span className="metric-foot">{activityText}</span>
             </Metric>

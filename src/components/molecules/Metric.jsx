@@ -1,9 +1,9 @@
 import { PeopleIcon } from '../atoms/Icons.jsx'
 
 // One tile in the Assets card: a label, then whatever the card puts inside.
-export function Metric({ label, children }) {
+export function Metric({ label, className = '', children }) {
   return (
-    <div className="metric">
+    <div className={'metric ' + className}>
       <span className="metric-label">{label}</span>
       {children}
     </div>
