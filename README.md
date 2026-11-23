@@ -73,10 +73,11 @@ All colours, spacing, type sizes, radii, shadows and layout values are CSS custo
 2. **Semantic roles.** Names such as `--card`, `--text`, `--muted`, `--bar-active`. Each points at a primitive, so a theme change happens in one place.
 3. **Spacing** (`--space-1` to `--space-8`), **type** (`--fs-xs` to `--fs-6xl`), **radius**, **shadows**, and **layout** (`--card-pad`, `--content-width`, `--row-h`).
 
-Component rules reference tokens with `var()`. A few one-off values remain as raw numbers; see Known gaps.
+Component rules reference tokens with `var()`. Spacing values on the 4px grid use `--space-1` to `--space-8`. Off-grid values from the design keep their exact px in the name (for example `--space-px-14`, `--radius-px-30`, `--fs-2xs`), so every spacing, radius and font value in the stylesheet resolves to a token. Buttons share one shape through `--btn-h` and the pill radius.
 
 ### Lint and tests
 
+- **Prettier** formats `src`, `README.md` and `index.html` (`npm run format`, `npm run format:check`). `src/styles.css` is excluded in `.prettierignore` so its hand-tuned section markers are kept.
 - **ESLint 9 flat config**: `@eslint/js` recommended, plus `eslint-plugin-react` and `eslint-plugin-react-hooks`. The `react-in-jsx-scope` and `prop-types` rules are off because the project uses the modern JSX transform and no PropTypes.
 - **Vitest** with the `jsdom` environment, and `@testing-library/react`. Setup is in `src/test/setup.js`, which unmounts after each test.
 
@@ -92,14 +93,14 @@ AG Grid and the SVG charts are not unit-tested. jsdom has no layout engine, so t
 
 ## Known gaps
 
-- Phone and tablet widths are not verified in the React build.
-- Some CSS values remain off-scale (a 9.5px font, a few radii and spacing values) and near-duplicate colours are not merged, so the screenshots still match the original build.
+- The plain HTML build in `Pbarick/jack-rabbit-dashboard` predates the button and Jack Rabbit card changes, so the two builds no longer match pixel for pixel. The React build is the reference.
+- Phone (390px), tablet (768px) and laptop (1024px) widths are checked for horizontal overflow, and the summary page was compared against the plain build at each width. The stage tabs at phone width still differ by a pixel or two, which is not fixed yet.
 - Live toggle and stage filter reset when the user navigates between routes, because the route remounts the page.
 - Fund selection uses React context. A larger app would move it to a store library.
 - The summary page's tab row is static.
-- "Learn More" is a placeholder.
+- "Learn More" is a placeholder text link.
 - The summary page chunk is about 1.26 MB minified, which triggers Vite's size warning. Splitting AG Grid further is not done.
-- Prettier is not configured yet.
+- Colour values that are near-duplicates are kept separate to match the original screenshots.
 
 ## Structure
 
