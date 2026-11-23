@@ -7,7 +7,7 @@ export default function PromoCard({ onViewReports }) {
       <p className="eyebrow">More for you</p>
       <h2 id="t-promo">JACK RABBIT Investments</h2>
       <div className="promo-actions">
-        <a href="#learn-more" className="link-blue" onClick={(e) => e.preventDefault()}>Learn More</a>
+        <button type="button" className="link-blue link-button">Learn More</button>
         <button type="button" className="btn-outline btn-sm" onClick={onViewReports}>View All Reports</button>
       </div>
     </article>

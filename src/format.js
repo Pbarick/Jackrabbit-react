@@ -33,10 +33,6 @@ export function sameDay(a, b) {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 }
 
-export function startOfDay(d) {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate())
-}
-
 export function parseISODay(s) {
   const parts = String(s).split("-")
   return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]))
