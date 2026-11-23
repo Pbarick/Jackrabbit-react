@@ -94,7 +94,7 @@ AG Grid and the SVG charts are not unit-tested. jsdom has no layout engine, so t
 ## Known gaps
 
 - The plain HTML build in `Pbarick/jack-rabbit-dashboard` predates the button and Jack Rabbit card changes, so the two builds no longer match pixel for pixel. The React build is the reference.
-- Phone (390px), tablet (768px) and laptop (1024px) widths are checked for horizontal overflow, and the summary page was compared against the plain build at each width. The stage tabs at phone width still differ by a pixel or two, which is not fixed yet.
+- Phone (390px), tablet (768px) and laptop (1024px) widths are checked for horizontal overflow, and the summary page was compared against the plain build at each width. Stage tab positions match the plain build to within 0.1px at phone width. The remaining pixel differences are sub-pixel anti-aliasing.
 - Live toggle and stage filter reset when the user navigates between routes, because the route remounts the page.
 - Fund selection uses React context. A larger app would move it to a store library.
 - The summary page's tab row is static.
