@@ -538,7 +538,7 @@ h1, h2, h3, p { margin: 0; }
 /* >>> START: Jack Rabbit Investments */
 /* ---------- Jack Rabbit Investments ---------- */
 
-.promo { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-height: 230px; padding-left: 176px; }
+.promo { display: flex; flex-direction: column; justify-content: flex-start; gap: 10px; min-height: 230px; padding-left: 176px; }
 .promo-watermark {
   position: absolute; left: 6px; bottom: 6px;
   width: 210px; height: auto;
@@ -548,7 +548,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .eyebrow { font-size: var(--fs-md); font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 .promo h2 { font-size: var(--fs-3xl); font-weight: 700; }
-.promo-actions { display: flex; align-items: center; gap: var(--space-5); margin-top: 6px; }
+.promo-actions { display: flex; align-items: center; gap: var(--space-5); margin-top: auto; padding-top: 6px; }
 
 /* <<< END: Jack Rabbit Investments */
 /* >>> START: Summary page (matches the summary screenshot) */
