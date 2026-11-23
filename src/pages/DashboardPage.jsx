@@ -1,14 +1,14 @@
 import { useRef } from 'react'
-import PerformanceCard from '../components/PerformanceCard.jsx'
-import AssetsCard from '../components/AssetsCard.jsx'
-import TradesCard from '../components/TradesCard.jsx'
-import ReportsCard from '../components/ReportsCard.jsx'
-import PromoCard from '../components/PromoCard.jsx'
+import PerformanceCard from '../components/organisms/PerformanceCard.jsx'
+import AssetsCard from '../components/organisms/AssetsCard.jsx'
+import TradesCard from '../components/organisms/TradesCard.jsx'
+import ReportsCard from '../components/organisms/ReportsCard.jsx'
+import PromoCard from '../components/organisms/PromoCard.jsx'
 
 export default function DashboardPage() {
   const reportsRef = useRef(null)
 
-  function viewReports() {
+  function scrollToReports() {
     reportsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
@@ -16,12 +16,12 @@ export default function DashboardPage() {
     <section className="view" aria-label="Dashboard">
       <div className="dashboard-grid">
         <PerformanceCard />
-        <AssetsCard onViewReports={viewReports} />
+        <AssetsCard onViewReports={scrollToReports} />
         <TradesCard />
       </div>
       <div className="bottom-grid">
         <ReportsCard ref={reportsRef} />
-        <PromoCard onViewReports={viewReports} />
+        <PromoCard onViewReports={scrollToReports} />
       </div>
     </section>
   )

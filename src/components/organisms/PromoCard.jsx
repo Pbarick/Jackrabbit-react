@@ -1,4 +1,5 @@
-import { LOGO_URL } from '../data.js'
+import Button from '../atoms/Button.jsx'
+import { LOGO_URL } from '../../lib/config.js'
 
 export default function PromoCard({ onViewReports }) {
   return (
@@ -8,7 +9,7 @@ export default function PromoCard({ onViewReports }) {
       <h2 id="t-promo">JACK RABBIT Investments</h2>
       <div className="promo-actions">
         <button type="button" className="link-blue link-button">Learn More</button>
-        <button type="button" className="btn-outline btn-sm" onClick={onViewReports}>View All Reports</button>
+        <Button variant="outline" size="sm" onClick={onViewReports}>View All Reports</Button>
       </div>
     </article>
   )

@@ -1,5 +1,3 @@
-import { TRADE_COUNTS, TRADE_DATES, TRADE_STP } from '../../data.js'
-
 const LEFT = 40
 const RIGHT = 16
 const TOP = 24
@@ -8,10 +6,10 @@ const Y_MAX = 120
 const AXIS_LINES = [0, 40, 80, 120]
 
 // Shared geometry, also used by the tooltip position in TradesCard.
-export function tradeGeometry(width, height) {
+export function tradeGeometry(width, height, dayCount) {
   const plotW = width - LEFT - RIGHT
   const plotH = height - TOP - BOTTOM
-  const slot = plotW / TRADE_COUNTS.length
+  const slot = plotW / dayCount
   return {
     width,
     height,
@@ -26,14 +24,14 @@ export function tradeGeometry(width, height) {
 
 // Trades combo chart: stacked bars, translucent band, STP line, crosshair.
 // Hovering a day calls onHover with its index.
-export default function TradesChart({ width, height, activeIndex, onHover }) {
-  const g = tradeGeometry(width, height)
-  const last = TRADE_COUNTS.length - 1
+export default function TradesChart({ width, height, counts, stp, dates, activeIndex, onHover }) {
+  const g = tradeGeometry(width, height, counts.length)
+  const last = counts.length - 1
 
-  const bandPoints = TRADE_COUNTS.map((c, i) => `${g.cxFor(i).toFixed(1)} ${g.yFor(c).toFixed(1)}`)
+  const bandPoints = counts.map((c, i) => `${g.cxFor(i).toFixed(1)} ${g.yFor(c).toFixed(1)}`)
   const bandPath = `M${bandPoints.join(' L')} L${g.cxFor(last).toFixed(1)} ${g.base} L${g.cxFor(0).toFixed(1)} ${g.base} Z`
 
-  const stpPoints = TRADE_STP.map((rate, i) => ({ x: g.cxFor(i), y: g.yFor(rate * 1.2) }))
+  const stpPoints = stp.map((rate, i) => ({ x: g.cxFor(i), y: g.yFor(rate * 1.2) }))
   const linePoints = stpPoints.map((p) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
 
   const cross = g.cxFor(activeIndex).toFixed(1)
@@ -78,7 +76,7 @@ export default function TradesChart({ width, height, activeIndex, onHover }) {
 
       <path className="trade-area" d={bandPath} />
 
-      {TRADE_COUNTS.map((count, i) => {
+      {counts.map((count, i) => {
         const x = g.cxFor(i) - g.barW / 2
         const isActive = i === activeIndex
         const lower = Math.round(count * 0.55)
@@ -131,7 +129,7 @@ export default function TradesChart({ width, height, activeIndex, onHover }) {
         />
       ))}
 
-      {TRADE_DATES.map((_, i) => (
+      {dates.map((_, i) => (
         <text
           key={i}
           className="chart-axis chart-axis-sm"

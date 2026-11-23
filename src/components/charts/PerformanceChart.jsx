@@ -1,5 +1,4 @@
-import { MONTHS } from '../../format.js'
-import { PERF_BLUE, PERF_GREEN, PERF_DASH } from '../../data.js'
+import { MONTHS } from '../../lib/format.js'
 
 const LEFT = 34
 const RIGHT = 8
@@ -15,14 +14,14 @@ function linePath(values, xFor, yFor) {
 }
 
 // Rabbit performance chart: blue area and line, green and dashed comparison lines.
-export default function PerformanceChart({ width, height }) {
+export default function PerformanceChart({ width, height, series }) {
   const plotW = width - LEFT - RIGHT
   const plotH = height - TOP - BOTTOM
   const yFor = (v) => TOP + plotH - (v / Y_MAX) * plotH
-  const xFor = (i) => LEFT + (i * plotW) / (PERF_BLUE.length - 1)
+  const xFor = (i) => LEFT + (i * plotW) / (series.blue.length - 1)
 
-  const bluePath = linePath(PERF_BLUE, xFor, yFor)
-  const lastX = xFor(PERF_BLUE.length - 1).toFixed(1)
+  const bluePath = linePath(series.blue, xFor, yFor)
+  const lastX = xFor(series.blue.length - 1).toFixed(1)
   const firstX = xFor(0).toFixed(1)
   const baseY = yFor(0).toFixed(1)
   const areaPath = `${bluePath} L${lastX} ${baseY} L${firstX} ${baseY} Z`
@@ -58,8 +57,8 @@ export default function PerformanceChart({ width, height }) {
 
       <path className="chart-area-blue" d={areaPath} />
       <path className="chart-line-blue" d={bluePath} />
-      <path className="chart-line-green" d={linePath(PERF_GREEN, xFor, yFor)} />
-      <path className="chart-line-dash" d={linePath(PERF_DASH, xFor, yFor)} />
+      <path className="chart-line-green" d={linePath(series.green, xFor, yFor)} />
+      <path className="chart-line-dash" d={linePath(series.dash, xFor, yFor)} />
 
       {MONTHS.map((mo, i) => (
         <text

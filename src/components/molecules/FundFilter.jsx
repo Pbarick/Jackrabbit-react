@@ -1,25 +1,27 @@
 import { useCallback, useRef, useState } from 'react'
-import { FILTER_GROUPS } from '../data.js'
-import { useOutsideClose } from '../hooks.js'
-import { ChevronDownIcon } from '../icons.jsx'
+import Checkbox from '../atoms/Checkbox.jsx'
+import { ChevronDownIcon } from '../atoms/Icons.jsx'
+import { useFundFilter } from '../../context/FundFilterContext.jsx'
+import { useOutsideClose } from '../../hooks/useOutsideClose.js'
 
-const ALL_FUNDS = FILTER_GROUPS.flat()
-
-export default function FundFilter({ checked, setChecked }) {
+// Dropdown of fund checkboxes, grouped. Reads and writes the shared fund selection.
+export default function FundFilter() {
+  const { checked, setChecked, groups } = useFundFilter()
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
   const close = useCallback(() => setOpen(false), [])
   useOutsideClose(ref, open, close)
 
-  const checkedNames = ALL_FUNDS.filter((name) => checked[name])
+  const allFunds = groups.flat()
+  const selected = allFunds.filter((name) => checked[name])
   let label = 'All Funds'
-  if (checkedNames.length === 0) label = 'No Funds'
-  else if (checkedNames.length < ALL_FUNDS.length) label = checkedNames.length + ' selected'
-  const allOn = checkedNames.length === ALL_FUNDS.length
+  if (selected.length === 0) label = 'No Funds'
+  else if (selected.length < allFunds.length) label = `${selected.length} selected`
+  const allOn = selected.length === allFunds.length
 
   function setAll(on) {
     const next = {}
-    ALL_FUNDS.forEach((name) => { next[name] = on })
+    allFunds.forEach((name) => { next[name] = on })
     setChecked(next)
   }
 
@@ -43,19 +45,14 @@ export default function FundFilter({ checked, setChecked }) {
       {open && (
         <div className="filter-panel">
           <label className="filter-item filter-all">
-            <input type="checkbox" className="check" checked={allOn} onChange={(e) => setAll(e.target.checked)} />
+            <Checkbox checked={allOn} onChange={(e) => setAll(e.target.checked)} />
             <span>All Funds</span>
           </label>
-          {FILTER_GROUPS.map((group, gi) => (
-            <div className="filter-group" key={gi}>
+          {groups.map((group, gi) => (
+            <div className="filter-group" key={group[0] ?? gi}>
               {group.map((name) => (
                 <label className="filter-item" key={name}>
-                  <input
-                    type="checkbox"
-                    className="check"
-                    checked={!!checked[name]}
-                    onChange={(e) => setOne(name, e.target.checked)}
-                  />
+                  <Checkbox checked={!!checked[name]} onChange={(e) => setOne(name, e.target.checked)} />
                   <span>{name}</span>
                 </label>
               ))}

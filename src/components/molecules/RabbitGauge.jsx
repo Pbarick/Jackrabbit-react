@@ -1,12 +1,13 @@
 import GaugeChart from '../charts/GaugeChart.jsx'
 
-export default function RabbitGauge({ pct }) {
+// Gauge with the percentage under it.
+export default function RabbitGauge({ percent }) {
   return (
     <div className="sm-gauge">
       <h2>Rabbit Gauge</h2>
       <div id="gauge">
-        <GaugeChart pct={pct} />
-        <p className="sm-gauge-text">{pct}%</p>
+        <GaugeChart pct={percent} />
+        <p className="sm-gauge-text">{percent}%</p>
         <p className="sm-gauge-sub">Complete</p>
       </div>
     </div>

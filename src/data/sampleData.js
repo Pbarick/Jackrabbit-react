@@ -1,6 +1,4 @@
-// Sample values and names are placeholders; replace with live data.
-
-export const LOGO_URL = import.meta.env.BASE_URL + 'rabbit-logo.svg'
+// Sample data for the demo. Placeholder values only; the service layer reads from here.
 
 export const HOLIDAYS = {
   "2024-12-25": "Christmas Day",
@@ -54,7 +52,7 @@ export const STEPS = [
 export const STEP_ACTIVE = 1
 
 // Grid row patterns taken from the summary screenshot.
-const GRID_PATTERNS = [
+export const GRID_PATTERNS = [
   { sev: "high", fund: "RABBIT ALPHA FUND", from: "125.77", to: "76.51", status: "Complete" },
   { sev: "low", fund: "RABBIT ALPHA FUND 2", from: "235.47", to: "76.51", status: "Pending" },
   { sev: "low", fund: "RABBIT ALPHA FUND 3", from: "125.77", to: "76.51", status: "Complete" },
@@ -73,7 +71,6 @@ const GRID_PATTERNS = [
 ]
 export const STAGES = ["Active", "Pending", "Validated", "Resolved"]
 export const TOTAL_ROWS = 127
-export const LIVE_INTERVAL_MS = 4000
 
 export const SEV_LABEL = { high: "High", med: "Medium", low: "Low" }
 export const SEV_RANK = { high: 0, med: 1, low: 2 }
@@ -87,39 +84,3 @@ export const ASSET_SETS = [
   { updated: "12/18/24", caught: false, activity: "4 items to review", tx: "1,286", txNote: "Need your attention", trades: "7", tradesNote: "Ready for approval", pending: "19", pendingNote: "Pending approval", done: 41, total: 120, of: "3 of 40" },
   { updated: "12/15/24", caught: true, tx: "864", txNote: "Need your attention", trades: "0", tradesNote: "Ready for approval", pending: "5", pendingNote: "Pending approval", done: 112, total: 150, of: "9 of 12" },
 ]
-
-export function initialFundChecked() {
-  const checked = {}
-  FILTER_GROUPS.forEach((group) => group.forEach((name) => { checked[name] = true }))
-  return checked
-}
-
-function buildRows() {
-  const rows = []
-  for (let r = 0; r < TOTAL_ROWS; r++) {
-    const p = GRID_PATTERNS[r % GRID_PATTERNS.length]
-    rows.push({
-      id: r + 1,
-      sev: p.sev,
-      fund: p.fund,
-      reason: "Quantity",
-      expected: p.from + " - " + p.to,
-      status: p.status,
-      created: new Date(2024, 7, 12, 8, 7),
-      stage: STAGES[r % STAGES.length],
-    })
-  }
-  return rows
-}
-
-// Shared rows for the summary grid. Live mode mutates these in place.
-export const ROWS = buildRows()
-
-// Live updates: three rows near the top of the grid change status.
-export function tickLive() {
-  const visibleCount = Math.min(ROWS.length, 20)
-  for (let n = 0; n < 3; n++) {
-    const row = ROWS[Math.floor(Math.random() * visibleCount)]
-    row.status = STATUS_ORDER[(STATUS_ORDER.indexOf(row.status) + 1) % STATUS_ORDER.length]
-  }
-}

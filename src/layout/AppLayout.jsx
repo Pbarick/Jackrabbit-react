@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import Header from '../components/Header.jsx'
-import { initialFundChecked } from '../data.js'
+import Header from '../components/organisms/Header.jsx'
+import ErrorBoundary from '../components/ErrorBoundary.jsx'
+import { FundFilterProvider } from '../context/FundFilterContext.jsx'
 
-// Shared frame for every page: header on top, the matched page in the outlet.
+// Shared frame for every page: header on top, then the matched page.
+// Each page renders inside its own error boundary and loading fallback.
 export default function AppLayout() {
-  const [fundChecked, setFundChecked] = useState(initialFundChecked)
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -13,11 +14,15 @@ export default function AppLayout() {
   }, [pathname])
 
   return (
-    <>
-      <Header fundChecked={fundChecked} setFundChecked={setFundChecked} />
+    <FundFilterProvider>
+      <Header />
       <main className="app-main">
-        <Outlet />
+        <ErrorBoundary key={pathname}>
+          <Suspense fallback={<p className="muted loading" role="status">Loading…</p>}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       </main>
-    </>
+    </FundFilterProvider>
   )
 }

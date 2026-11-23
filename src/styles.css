@@ -846,3 +846,18 @@ h1, h2, h3, p { margin: 0; }
 .sm-switch-knob .sw-tick { stroke: var(--blue); display: none; }
 .sm-switch input:checked + .sm-switch-track .sw-x { display: none; }
 .sm-switch input:checked + .sm-switch-track .sw-tick { display: block; }
+
+/* ---- Feedback states: loading and error panels ---- */
+.loading { padding: var(--space-6); }
+.error-panel {
+  max-width: 480px;
+  margin: var(--space-8) auto;
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+.error-panel h2 { margin: 0; font-size: var(--fs-3xl); }
