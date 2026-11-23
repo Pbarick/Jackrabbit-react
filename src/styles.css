@@ -647,11 +647,18 @@ h1, h2, h3, p { margin: 0; }
 
 /* AG Grid host on the summary page */
 .sm-grid-host { height: 560px; width: 100%; }
+/* Phones: tighter cell padding and text so Severity, Fund, Status and Actions fit without a scrollbar. */
+@media (max-width: 559px) {
+  .sm-grid-host .ag-root-wrapper { --ag-cell-horizontal-padding: 8px; --ag-font-size: 12px; --ag-header-font-size: 11px; }
+  .sm-grid .sm-pill { height: 28px; padding: 0 var(--space-px-7); font-size: var(--fs-md); gap: var(--space-px-4, 4px); }
+  .sm-grid .sm-sev { height: 22px; padding: 0 var(--space-px-6); font-size: var(--fs-sm); }
+}
 .sm-grid .ag-header-cell-text { text-transform: uppercase; }
 .sm-grid .ag-cell { display: flex; align-items: center; }
 .sm-grid .sm-link { color: var(--blue-link); background: none; border: none; font: inherit; cursor: pointer; padding: 0; }
 .sm-grid .sm-link:hover { text-decoration: underline; }
 .sm-grid .sm-sev, .sm-grid .sm-pill { display: inline-flex; }
+.sm-fund-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* Status filters: plain text, active is an outlined pill */
 .sm-filters { display: flex; flex-wrap: wrap; gap: var(--space-px-22); align-items: center; margin: var(--space-4) 0 var(--space-px-14); }

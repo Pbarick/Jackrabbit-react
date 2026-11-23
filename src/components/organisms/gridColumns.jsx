@@ -15,6 +15,12 @@ function SeverityCell({ data }) {
   )
 }
 
+// Fund names truncate with an ellipsis when the column is narrow.
+function FundCell({ value }) {
+  if (!value) return null
+  return <span className="sm-fund-name">{value}</span>
+}
+
 function StatusCell({ value }) {
   if (!value) return null
   const tone =
@@ -45,7 +51,7 @@ export const GRID_COLUMNS = [
     headerName: 'Severity',
     field: 'sev',
     width: 120,
-    minWidth: 110,
+    minWidth: 76,
     cellRenderer: SeverityCell,
   },
   {
@@ -53,8 +59,9 @@ export const GRID_COLUMNS = [
     headerName: 'Fund',
     field: 'fund',
     flex: 1.2,
-    minWidth: 70,
+    minWidth: 40,
     cellClass: 'sm-cell-fund',
+    cellRenderer: FundCell,
   },
   { colId: 'reason', headerName: 'Reason', field: 'reason', flex: 1, minWidth: 80 },
   {
@@ -69,7 +76,7 @@ export const GRID_COLUMNS = [
     headerName: 'Status',
     field: 'status',
     width: 150,
-    minWidth: 140,
+    minWidth: 104,
     cellRenderer: StatusCell,
   },
   {
@@ -84,8 +91,8 @@ export const GRID_COLUMNS = [
     colId: 'actions',
     headerName: 'Actions',
     field: 'id',
-    width: 136,
-    minWidth: 136,
+    width: 100,
+    minWidth: 92,
     cellRenderer: ActionCell,
     sortable: false,
   },

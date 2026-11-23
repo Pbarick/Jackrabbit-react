@@ -36,7 +36,6 @@ const DEFAULT_COL_DEF = { sortable: true, filter: false, resizable: false }
 const HIDE_BELOW = [
   { colIds: ['created', 'expected'], width: 760 },
   { colIds: ['reason'], width: 680 },
-  { colIds: ['sev'], width: 520 },
 ]
 
 // Shows only the columns that fit the given width, then stretches them to fill it.
