@@ -28,11 +28,11 @@ The Vite `base` in `vite.config.js` must match the repo name's casing (`/Jackrab
 
 `HashRouter` is used because GitHub Pages has no fallback for deep links, so a refresh on `/datagrid` would 404 with `BrowserRouter`. The hash keeps every route on the static host.
 
-| Route | Page | Notes |
-| --- | --- | --- |
-| `/` | `DashboardPage` | Loaded eagerly |
-| `/datagrid` | `SummaryPage` | `React.lazy`, so AG Grid ships in its own chunk |
-| `*` | `NotFoundPage` | |
+| Route       | Page            | Notes                                           |
+| ----------- | --------------- | ----------------------------------------------- |
+| `/`         | `DashboardPage` | Loaded eagerly                                  |
+| `/datagrid` | `SummaryPage`   | `React.lazy`, so AG Grid ships in its own chunk |
+| `*`         | `NotFoundPage`  |                                                 |
 
 `AppLayout` owns the header and an `Outlet`. Each route's content sits inside an `ErrorBoundary` keyed by pathname, so a crash on one page resets when the user navigates away. A `Suspense` fallback covers the lazy page.
 

@@ -11,7 +11,11 @@ function Flaky() {
 describe('ErrorBoundary', () => {
   it('shows a fallback instead of crashing, and recovers on retry', () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
-    render(<ErrorBoundary><Flaky /></ErrorBoundary>)
+    render(
+      <ErrorBoundary>
+        <Flaky />
+      </ErrorBoundary>,
+    )
     expect(screen.getByRole('alert')).toBeTruthy()
     expect(screen.getByText('boom')).toBeTruthy()
 

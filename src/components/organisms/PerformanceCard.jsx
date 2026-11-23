@@ -13,14 +13,20 @@ export default function PerformanceCard() {
   const chartReady = width >= MIN_CHART_SIZE && height >= MIN_CHART_SIZE
 
   return (
-    <article className="card card-performance" id="card-performance" aria-labelledby="t-performance">
+    <article
+      className="card card-performance"
+      id="card-performance"
+      aria-labelledby="t-performance"
+    >
       <header className="card-head">
         <h2 id="t-performance">Rabbit Performance</h2>
       </header>
       <div className="card-body" id="performance">
         <div className="perf-value">
           <span className="big-number">{data.value}</span>
-          <span className="delta">{'↗'} {data.delta}</span>
+          <span className="delta">
+            {'↗'} {data.delta}
+          </span>
         </div>
         <div className="perf-chart" id="perfChart" ref={chartBox}>
           {chartReady && <PerformanceChart width={width} height={height} series={data.series} />}

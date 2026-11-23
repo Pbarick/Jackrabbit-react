@@ -1,0 +1,5 @@
+dist
+node_modules
+package-lock.json
+# hand-tuned CSS with section markers; reformatting would break the START/END layout
+src/styles.css

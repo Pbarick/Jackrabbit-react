@@ -8,7 +8,9 @@ export default function PerformerList({ title, rows, dir }) {
         {rows.map((row) => (
           <li className="performer-row" key={row.name}>
             <span>{row.name}</span>
-            <span className={`perf-${dir}`}>{arrow} {row.value}</span>
+            <span className={`perf-${dir}`}>
+              {arrow} {row.value}
+            </span>
           </li>
         ))}
       </ul>

@@ -3,7 +3,8 @@
 export function TriangleIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 3L2 21h20z" /><path d="M12 10v5M12 18h0" />
+      <path d="M12 3L2 21h20z" />
+      <path d="M12 10v5M12 18h0" />
     </svg>
   )
 }
@@ -11,7 +12,8 @@ export function TriangleIcon() {
 export function CheckCircleIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" /><path d="M8 12.5l2.5 2.5L16 9.5" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M8 12.5l2.5 2.5L16 9.5" />
     </svg>
   )
 }
@@ -35,7 +37,8 @@ export function TickBigIcon() {
 export function PeopleIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="10" r="4" /><path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5" />
+      <circle cx="12" cy="10" r="4" />
+      <path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5" />
     </svg>
   )
 }
@@ -43,7 +46,8 @@ export function PeopleIcon() {
 export function CalendarIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18M8 2v4M16 2v4" />
+      <rect x="3" y="4" width="18" height="17" rx="2" />
+      <path d="M3 9h18M8 2v4M16 2v4" />
     </svg>
   )
 }
@@ -76,7 +80,8 @@ export function InsightsIcon() {
 export function AccountIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="9.5" /><circle cx="12" cy="10" r="3" />
+      <circle cx="12" cy="12" r="9.5" />
+      <circle cx="12" cy="10" r="3" />
       <path d="M6.6 18.2c1.3-2.2 3.2-3.3 5.4-3.3s4.1 1.1 5.4 3.3" />
     </svg>
   )
@@ -85,7 +90,8 @@ export function AccountIcon() {
 export function TasksIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="4" y="4" width="16" height="16" rx="2" /><path d="M8 12l2.5 2.5L16 9" />
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <path d="M8 12l2.5 2.5L16 9" />
     </svg>
   )
 }
@@ -104,7 +110,9 @@ export function SlidersIcon() {
   return (
     <svg className="icon sm-sliders" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" />
-      <circle cx="16" cy="6" r="2" /><circle cx="10" cy="12" r="2" /><circle cx="18" cy="18" r="2" />
+      <circle cx="16" cy="6" r="2" />
+      <circle cx="10" cy="12" r="2" />
+      <circle cx="18" cy="18" r="2" />
     </svg>
   )
 }

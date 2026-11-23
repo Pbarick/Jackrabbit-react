@@ -5,7 +5,11 @@ import { FundFilterProvider } from '../../context/FundFilterContext.jsx'
 import { getFundGroups } from '../../services/dashboardService.js'
 
 function renderFilter() {
-  return render(<FundFilterProvider><FundFilter /></FundFilterProvider>)
+  return render(
+    <FundFilterProvider>
+      <FundFilter />
+    </FundFilterProvider>,
+  )
 }
 
 describe('FundFilter', () => {

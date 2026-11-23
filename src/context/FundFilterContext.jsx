@@ -6,10 +6,7 @@ const FundFilterContext = createContext(null)
 
 export function FundFilterProvider({ children }) {
   const [checked, setChecked] = useState(createFundSelection)
-  const value = useMemo(
-    () => ({ checked, setChecked, groups: getFundGroups() }),
-    [checked],
-  )
+  const value = useMemo(() => ({ checked, setChecked, groups: getFundGroups() }), [checked])
   return <FundFilterContext.Provider value={value}>{children}</FundFilterContext.Provider>
 }
 

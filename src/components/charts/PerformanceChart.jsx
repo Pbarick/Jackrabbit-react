@@ -50,7 +50,9 @@ export default function PerformanceChart({ width, height, series }) {
         return (
           <g key={t}>
             <line className="chart-grid" x1={LEFT} x2={width - RIGHT} y1={y} y2={y} />
-            <text className="chart-axis" x={LEFT - 8} y={y + 4} textAnchor="end">{t}</text>
+            <text className="chart-axis" x={LEFT - 8} y={y + 4} textAnchor="end">
+              {t}
+            </text>
           </g>
         )
       })}

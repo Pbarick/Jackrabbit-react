@@ -15,7 +15,9 @@ export function CountMetric({ label, value, note, action }) {
   return (
     <Metric label={label}>
       <span className="metric-num">
-        <span className="num-icon"><PeopleIcon /></span>
+        <span className="num-icon">
+          <PeopleIcon />
+        </span>
         {value}
       </span>
       <span className="metric-sub">{note}</span>

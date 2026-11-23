@@ -7,7 +7,12 @@ import LiveSwitch from '../components/molecules/LiveSwitch.jsx'
 import StageFilters from '../components/molecules/StageFilters.jsx'
 import { SlidersIcon } from '../components/atoms/Icons.jsx'
 import { getRows } from '../data/liveRows.js'
-import { useAccountTotal, useGaugePercent, useStages, useStepper } from '../hooks/useDashboardData.js'
+import {
+  useAccountTotal,
+  useGaugePercent,
+  useStages,
+  useStepper,
+} from '../hooks/useDashboardData.js'
 
 // Summary page (the "Rabbit Datagrid"). Lazy-loaded from App.jsx, so AG Grid ships only with this page.
 export default function SummaryPage() {
@@ -24,7 +29,9 @@ export default function SummaryPage() {
   const counts = useMemo(() => {
     const rows = getRows()
     const result = { All: rows.length }
-    stages.forEach((s) => { result[s] = rows.filter((r) => r.stage === s).length })
+    stages.forEach((s) => {
+      result[s] = rows.filter((r) => r.stage === s).length
+    })
     return result
   }, [stages])
 
@@ -49,8 +56,12 @@ export default function SummaryPage() {
             <h2>Account Total</h2>
             <SlidersIcon />
           </div>
-          <p className="sm-value">{account.value} <span>{account.unit}</span></p>
-          <p className="sm-delta">{'↗'} {account.delta}</p>
+          <p className="sm-value">
+            {account.value} <span>{account.unit}</span>
+          </p>
+          <p className="sm-delta">
+            {'↗'} {account.delta}
+          </p>
         </div>
 
         <div className="sm-stepper">
@@ -62,8 +73,12 @@ export default function SummaryPage() {
 
       <div className="sm-tabs-row">
         <div className="sm-tabs" role="tablist">
-          <button type="button" className="sm-tab" role="tab" aria-selected="false">Rabbit Tab 1</button>
-          <button type="button" className="sm-tab is-active" role="tab" aria-selected="true">Rabbit Tab 1</button>
+          <button type="button" className="sm-tab" role="tab" aria-selected="false">
+            Rabbit Tab 1
+          </button>
+          <button type="button" className="sm-tab is-active" role="tab" aria-selected="true">
+            Rabbit Tab 1
+          </button>
         </div>
         <LiveSwitch live={live} onChange={setLive} />
       </div>

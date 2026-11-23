@@ -37,16 +37,19 @@ export default function SummaryGrid({ stage, live, onAction }) {
   const apiRef = useRef(null)
   const stageRef = useRef(stage)
 
-  const datasource = useMemo(() => ({
-    getRows(params) {
-      const current = stageRef.current
-      const filtered = getRows().filter((row) => current === 'All' || row.stage === current)
-      const sorted = sortRows(filtered, params.sortModel)
-      // Copies, so the grid notices when a row's status changes during a refresh.
-      const block = sorted.slice(params.startRow, params.endRow).map((row) => ({ ...row }))
-      params.successCallback(block, sorted.length)
-    },
-  }), [])
+  const datasource = useMemo(
+    () => ({
+      getRows(params) {
+        const current = stageRef.current
+        const filtered = getRows().filter((row) => current === 'All' || row.stage === current)
+        const sorted = sortRows(filtered, params.sortModel)
+        // Copies, so the grid notices when a row's status changes during a refresh.
+        const block = sorted.slice(params.startRow, params.endRow).map((row) => ({ ...row }))
+        params.successCallback(block, sorted.length)
+      },
+    }),
+    [],
+  )
 
   // A stage change clears the cache so every block is requested again.
   useEffect(() => {

@@ -21,7 +21,9 @@ export default function FundFilter() {
 
   function setAll(on) {
     const next = {}
-    allFunds.forEach((name) => { next[name] = on })
+    allFunds.forEach((name) => {
+      next[name] = on
+    })
     setChecked(next)
   }
 
@@ -52,7 +54,10 @@ export default function FundFilter() {
             <div className="filter-group" key={group[0] ?? gi}>
               {group.map((name) => (
                 <label className="filter-item" key={name}>
-                  <Checkbox checked={!!checked[name]} onChange={(e) => setOne(name, e.target.checked)} />
+                  <Checkbox
+                    checked={!!checked[name]}
+                    onChange={(e) => setOne(name, e.target.checked)}
+                  />
                   <span>{name}</span>
                 </label>
               ))}

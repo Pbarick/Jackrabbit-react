@@ -25,15 +25,25 @@ export default function Header() {
 
           <NavLink
             to="/datagrid"
-            className={({ isActive }) => buttonClass({ size: 'sm', active: isActive, extra: 'btn-link' })}
+            className={({ isActive }) =>
+              buttonClass({ size: 'sm', active: isActive, extra: 'btn-link' })
+            }
           >
             Rabbit Datagrid
           </NavLink>
 
-          <IconButton label="Insights"><InsightsIcon /></IconButton>
-          <IconButton label="Account"><AccountIcon /></IconButton>
-          <IconButton label="Tasks" badge={12}><TasksIcon /></IconButton>
-          <IconButton label="Apps"><AppsIcon /></IconButton>
+          <IconButton label="Insights">
+            <InsightsIcon />
+          </IconButton>
+          <IconButton label="Account">
+            <AccountIcon />
+          </IconButton>
+          <IconButton label="Tasks" badge={12}>
+            <TasksIcon />
+          </IconButton>
+          <IconButton label="Apps">
+            <AppsIcon />
+          </IconButton>
         </div>
       </div>
     </header>

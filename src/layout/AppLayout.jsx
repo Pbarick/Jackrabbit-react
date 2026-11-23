@@ -18,7 +18,13 @@ export default function AppLayout() {
       <Header />
       <main className="app-main">
         <ErrorBoundary key={pathname}>
-          <Suspense fallback={<p className="muted loading" role="status">Loading…</p>}>
+          <Suspense
+            fallback={
+              <p className="muted loading" role="status">
+                Loading…
+              </p>
+            }
+          >
             <Outlet />
           </Suspense>
         </ErrorBoundary>

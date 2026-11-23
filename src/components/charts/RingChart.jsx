@@ -7,7 +7,12 @@ export default function RingChart({ done, total }) {
   const dash = (pct / 100) * CIRCUMFERENCE
 
   return (
-    <svg className="ring" viewBox="0 0 120 120" role="img" aria-label={`${done} of ${total} complete`}>
+    <svg
+      className="ring"
+      viewBox="0 0 120 120"
+      role="img"
+      aria-label={`${done} of ${total} complete`}
+    >
       <defs>
         <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#1FC7BE" />
@@ -22,8 +27,12 @@ export default function RingChart({ done, total }) {
         r={RADIUS}
         strokeDasharray={`${dash.toFixed(2)} ${CIRCUMFERENCE.toFixed(2)}`}
       />
-      <text className="ring-text" x="60" y="58">{done}</text>
-      <text className="ring-sub" x="60" y="74">of {total}</text>
+      <text className="ring-text" x="60" y="58">
+        {done}
+      </text>
+      <text className="ring-sub" x="60" y="74">
+        of {total}
+      </text>
     </svg>
   )
 }

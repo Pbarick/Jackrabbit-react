@@ -7,7 +7,8 @@ export default function Stepper({ steps, active }) {
     <ol className="sm-steps" id="stepper">
       {steps.map((step, i) => {
         const nodeState = i < active ? 'is-done' : i === active ? 'is-active' : ''
-        const segState = i < active ? 'is-done' : i <= active + 1 && i < last ? 'is-active' : 'is-future'
+        const segState =
+          i < active ? 'is-done' : i <= active + 1 && i < last ? 'is-active' : 'is-future'
         return (
           <li className="sm-step" key={step.title}>
             <span className="sm-step-label">{step.title}</span>

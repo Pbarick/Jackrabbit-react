@@ -69,7 +69,9 @@ export default function TradesChart({ width, height, counts, stp, dates, activeI
         return (
           <g key={t}>
             <line className="chart-grid" x1={LEFT} x2={width - RIGHT} y1={y} y2={y} />
-            <text className="chart-axis" x={LEFT - 8} y={y + 4} textAnchor="end">{t}</text>
+            <text className="chart-axis" x={LEFT - 8} y={y + 4} textAnchor="end">
+              {t}
+            </text>
           </g>
         )
       })}
@@ -86,7 +88,13 @@ export default function TradesChart({ width, height, counts, stp, dates, activeI
         return (
           <g key={i} onMouseEnter={() => onHover(i)}>
             {/* Full-height hit area so the whole day column responds to hover */}
-            <rect x={g.cxFor(i) - g.slot / 2} y={TOP} width={g.slot} height={g.plotH} fill="transparent" />
+            <rect
+              x={g.cxFor(i) - g.slot / 2}
+              y={TOP}
+              width={g.slot}
+              height={g.plotH}
+              fill="transparent"
+            />
             <rect
               className={'trade-bar-base' + cls}
               x={x.toFixed(1)}

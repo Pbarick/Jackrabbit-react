@@ -34,18 +34,33 @@ export default function ReportItem({ report, open, onToggle }) {
         <div className="rd-grid">
           <ReportTile label="Records" value={report.records.toLocaleString('en-US')} />
           <ReportTile label="Matched" value={report.matched.toLocaleString('en-US')} />
-          <ReportTile label="Exceptions" value={report.exceptions} tone={report.exceptions > 100 ? 'bad' : 'warn'} />
+          <ReportTile
+            label="Exceptions"
+            value={report.exceptions}
+            tone={report.exceptions > 100 ? 'bad' : 'warn'}
+          />
           <ReportTile label="Funds covered" value={report.funds} />
         </div>
         <div className="rd-match">
-          <div className="rd-match-top"><span>Match rate</span><b>{matchRate}%</b></div>
-          <div className="rd-bar"><span style={{ width: `${matchRate}%` }}></span></div>
+          <div className="rd-match-top">
+            <span>Match rate</span>
+            <b>{matchRate}%</b>
+          </div>
+          <div className="rd-bar">
+            <span style={{ width: `${matchRate}%` }}></span>
+          </div>
         </div>
         <div className="rd-foot">
-          <span>Report date {report.date} {'·'} Last run {report.lastRun}</span>
+          <span>
+            Report date {report.date} {'·'} Last run {report.lastRun}
+          </span>
           <div className="rd-actions">
-            <button type="button" className="btn-outline btn-sm">Download CSV</button>
-            <button type="button" className="btn-primary btn-sm">Open Report</button>
+            <button type="button" className="btn-outline btn-sm">
+              Download CSV
+            </button>
+            <button type="button" className="btn-primary btn-sm">
+              Open Report
+            </button>
           </div>
         </div>
       </div>

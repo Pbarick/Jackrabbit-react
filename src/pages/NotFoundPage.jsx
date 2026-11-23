@@ -6,7 +6,9 @@ export default function NotFoundPage() {
       <div className="error-panel">
         <h2>Page not found</h2>
         <p className="muted">That page doesn’t exist in this dashboard.</p>
-        <Link to="/" className="link-blue">Back to the dashboard</Link>
+        <Link to="/" className="link-blue">
+          Back to the dashboard
+        </Link>
       </div>
     </section>
   )

@@ -64,11 +64,15 @@ export default function AssetsCard({ onViewReports }) {
 
       <aside className="complete-panel" id="card-complete" aria-labelledby="t-complete">
         <h2 id="t-complete">Complete STATS</h2>
-        <p className="muted" id="completeOf">{data.of}</p>
+        <p className="muted" id="completeOf">
+          {data.of}
+        </p>
         <div id="complete">
           <RingChart done={data.done} total={data.total} />
         </div>
-        <Button variant="outline" size="sm" onClick={onViewReports}>View Complete</Button>
+        <Button variant="outline" size="sm" onClick={onViewReports}>
+          View Complete
+        </Button>
       </aside>
     </article>
   )
