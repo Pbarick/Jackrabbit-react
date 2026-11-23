@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { PERFORMERS_TOP, PERFORMERS_BOTTOM } from '../data.js'
-import { performanceChartSVG } from '../charts.js'
+import PerformanceChart from './charts/PerformanceChart.jsx'
+
+const MIN_SIZE = 120
 
 function PerformerList({ title, rows, dir }) {
   const arrow = dir === 'up' ? '↑' : '↓'
@@ -23,7 +25,7 @@ export default function PerformanceCard() {
   const boxRef = useRef(null)
   const [size, setSize] = useState({ w: 0, h: 0 })
 
-  // Redraw the chart at the box's real size so it fills the card height.
+  // Measure the chart box so the SVG fills the card at any width.
   useLayoutEffect(() => {
     const el = boxRef.current
     if (!el || !window.ResizeObserver) return undefined
@@ -34,8 +36,7 @@ export default function PerformanceCard() {
     return () => ro.disconnect()
   }, [])
 
-  const ready = size.w >= 120 && size.h >= 120
-  const svg = ready ? performanceChartSVG(size.w, size.h) : ''
+  const ready = size.w >= MIN_SIZE && size.h >= MIN_SIZE
 
   return (
     <article className="card card-performance" id="card-performance" aria-labelledby="t-performance">
@@ -47,14 +48,9 @@ export default function PerformanceCard() {
           <span className="big-number">$7.65</span>
           <span className="delta">{'↗'} 25%</span>
         </div>
-        <div
-          className="perf-chart"
-          id="perfChart"
-          ref={boxRef}
-          role="img"
-          aria-label="Rabbit performance chart"
-          dangerouslySetInnerHTML={{ __html: svg }}
-        />
+        <div className="perf-chart" id="perfChart" ref={boxRef}>
+          {ready && <PerformanceChart width={size.w} height={size.h} />}
+        </div>
         <div className="performers">
           <PerformerList title="Top Performers" rows={PERFORMERS_TOP} dir="up" />
           <PerformerList title="Bottom Performers" rows={PERFORMERS_BOTTOM} dir="down" />

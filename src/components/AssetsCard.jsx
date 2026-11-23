@@ -1,13 +1,9 @@
 import { useState } from 'react'
 import { ASSET_SETS, ASSET_TABS } from '../data.js'
-import { ringSVG } from '../charts.js'
+import RingChart from './charts/RingChart.jsx'
 import { PeopleIcon, TickBigIcon, TriangleIcon } from '../icons.jsx'
 
-function scrollToReports() {
-  document.getElementById('card-reports')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
-
-export default function AssetsCard() {
+export default function AssetsCard({ onViewReports }) {
   const [tab, setTab] = useState(0)
   const d = ASSET_SETS[tab]
   const activityText = d.caught ? 'You’re all caught up!' : d.activity
@@ -66,8 +62,10 @@ export default function AssetsCard() {
       <aside className="complete-panel" id="card-complete" aria-labelledby="t-complete">
         <h2 id="t-complete">Complete STATS</h2>
         <p className="muted" id="completeOf">{d.of}</p>
-        <div id="complete" dangerouslySetInnerHTML={{ __html: ringSVG(d.done, d.total) }} />
-        <button type="button" className="btn-outline btn-sm" onClick={scrollToReports}>View Complete</button>
+        <div id="complete">
+          <RingChart done={d.done} total={d.total} />
+        </div>
+        <button type="button" className="btn-outline btn-sm" onClick={onViewReports}>View Complete</button>
       </aside>
     </article>
   )

@@ -95,7 +95,7 @@ function sortRows(rows, sortModel) {
   })
 }
 
-export default function SummaryGrid({ stage, live, visible, onAction }) {
+export default function SummaryGrid({ stage, live, onAction }) {
   const apiRef = useRef(null)
   const stageRef = useRef(stage)
 
@@ -118,10 +118,6 @@ export default function SummaryGrid({ stage, live, visible, onAction }) {
     apiRef.current?.refreshInfiniteCache()
   }, [stage])
 
-  useEffect(() => {
-    if (visible) apiRef.current?.sizeColumnsToFit()
-  }, [visible])
-
   // Live mode: three rows near the top change status every few seconds.
   useEffect(() => {
     if (!live) return undefined
@@ -134,7 +130,7 @@ export default function SummaryGrid({ stage, live, visible, onAction }) {
 
   function onGridReady(e) {
     apiRef.current = e.api
-    if (visible) e.api.sizeColumnsToFit()
+    e.api.sizeColumnsToFit()
   }
 
   function onCellClicked(e) {

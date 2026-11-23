@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { forwardRef, useState } from 'react'
 import { REPORTS } from '../data.js'
 import { ChevronRightIcon } from '../icons.jsx'
 
@@ -11,7 +11,8 @@ function ReportTile({ label, value, tone }) {
   )
 }
 
-export default function ReportsCard() {
+// Forwarded ref lets the dashboard scroll to this card.
+const ReportsCard = forwardRef(function ReportsCard(props, ref) {
   const [openRows, setOpenRows] = useState({})
 
   function toggle(i) {
@@ -19,7 +20,7 @@ export default function ReportsCard() {
   }
 
   return (
-    <article className="card card-reports" id="card-reports" aria-labelledby="t-reports">
+    <article className="card card-reports" id="card-reports" ref={ref} aria-labelledby="t-reports">
       <header className="card-head">
         <h2 id="t-reports">Your Reports</h2>
       </header>
@@ -81,4 +82,6 @@ export default function ReportsCard() {
       </div>
     </article>
   )
-}
+})
+
+export default ReportsCard
