@@ -13,12 +13,12 @@ npm run dev
 
 ```bash
 npm run build      # output in dist/
-npm run preview    # serve dist/ at http://localhost:4173/jackrabbit-react/
+npm run preview    # serve dist/ at http://localhost:4173/Jackrabbit-react/
 ```
 
 ## Deploy
 
-Served from GitHub Pages at https://pbarick.github.io/jackrabbit-react/. The Vite `base` in `vite.config.js` is set to `/jackrabbit-react/`.
+Served from GitHub Pages at https://pbarick.github.io/Jackrabbit-react/. The Vite `base` in `vite.config.js` is set to `/Jackrabbit-react/`.
 
 ## Structure
 
