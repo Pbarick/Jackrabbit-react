@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import { AllCommunityModule, ModuleRegistry, colorSchemeDark, themeQuartz } from 'ag-grid-community'
-import { GRID_COLUMNS } from './gridColumns.jsx'
+import { columnDefsFor, GRID_COLUMNS } from './gridColumns.jsx'
 import { getRows, subscribeToRows, tickLiveRows } from '../../data/liveRows.js'
 import { useInterval } from '../../hooks/useInterval.js'
 import { useElementSize } from '../../hooks/useElementSize.js'
@@ -38,8 +38,15 @@ const HIDE_BELOW = [
   { colIds: ['reason'], width: 680 },
 ]
 
-// Shows only the columns that fit the given width, then stretches them to fill it.
-function fitColumns(api, width) {
+const COMPACT_BELOW = 560
+
+// Applies the layout for the grid's width: compact minimums, hidden columns, then fit.
+function applyLayout(api, width, compactRef) {
+  const compact = width < COMPACT_BELOW
+  if (compactRef.current !== compact) {
+    api.setGridOption('columnDefs', columnDefsFor(compact))
+    compactRef.current = compact
+  }
   HIDE_BELOW.forEach(({ colIds, width: minWidth }) => {
     api.setColumnsVisible(colIds, width >= minWidth)
   })
@@ -52,6 +59,7 @@ export default function SummaryGrid({ stage, live, onAction }) {
   const apiRef = useRef(null)
   const stageRef = useRef(stage)
   const hostRef = useRef(null)
+  const compactRef = useRef(null)
   const { width } = useElementSize(hostRef)
 
   const datasource = useMemo(
@@ -79,14 +87,14 @@ export default function SummaryGrid({ stage, live, onAction }) {
 
   useInterval(tickLiveRows, live ? LIVE_INTERVAL_MS : null)
 
-  // Re-fit whenever the grid's width changes (window resize, sidebar, rotation).
+  // Re-apply the layout whenever the grid's width changes (window resize, rotation).
   useEffect(() => {
-    if (apiRef.current && width > 0) fitColumns(apiRef.current, width)
+    if (apiRef.current && width > 0) applyLayout(apiRef.current, width, compactRef)
   }, [width])
 
   function handleGridReady(event) {
     apiRef.current = event.api
-    if (width > 0) fitColumns(event.api, width)
+    if (width > 0) applyLayout(event.api, width, compactRef)
   }
 
   function handleCellClicked(event) {

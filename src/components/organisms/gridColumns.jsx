@@ -51,7 +51,7 @@ export const GRID_COLUMNS = [
     headerName: 'Severity',
     field: 'sev',
     width: 120,
-    minWidth: 76,
+    minWidth: 110,
     cellRenderer: SeverityCell,
   },
   {
@@ -59,7 +59,7 @@ export const GRID_COLUMNS = [
     headerName: 'Fund',
     field: 'fund',
     flex: 1.2,
-    minWidth: 40,
+    minWidth: 80,
     cellClass: 'sm-cell-fund',
     cellRenderer: FundCell,
   },
@@ -69,14 +69,14 @@ export const GRID_COLUMNS = [
     headerName: 'Expected Value from/to',
     field: 'expected',
     flex: 1.4,
-    minWidth: 120,
+    minWidth: 160,
   },
   {
     colId: 'status',
     headerName: 'Status',
     field: 'status',
     width: 150,
-    minWidth: 104,
+    minWidth: 140,
     cellRenderer: StatusCell,
   },
   {
@@ -91,9 +91,21 @@ export const GRID_COLUMNS = [
     colId: 'actions',
     headerName: 'Actions',
     field: 'id',
-    width: 100,
-    minWidth: 92,
+    width: 124,
+    minWidth: 124,
     cellRenderer: ActionCell,
     sortable: false,
   },
 ]
+
+// Narrow-screen minimums: phones use smaller cell padding and pills (see styles.css), so columns can be narrower.
+export const COMPACT_MIN_WIDTHS = { sev: 76, fund: 40, status: 104, actions: 92 }
+
+// Column definitions for the current layout. Compact layouts use the smaller minimums.
+export function columnDefsFor(compact) {
+  return GRID_COLUMNS.map((col) =>
+    compact && COMPACT_MIN_WIDTHS[col.colId]
+      ? { ...col, minWidth: COMPACT_MIN_WIDTHS[col.colId] }
+      : col,
+  )
+}
