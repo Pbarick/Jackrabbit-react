@@ -8,35 +8,35 @@
  * To count yourself again: localStorage.removeItem('goatcounter_ignore').
  * You can also add your home IP in GoatCounter under Settings, then Tracking, then Ignore IPs.
  */
-(function () {
-  var SITE_CODE = 'pbarick';
-  if (SITE_CODE === 'SITE_CODE') return;
+;(function () {
+  var SITE_CODE = 'pbarick'
+  if (SITE_CODE === 'SITE_CODE') return
 
-  if (isOptedOut()) return;
+  if (isOptedOut()) return
 
-  window.goatcounter = { no_onload: true };
+  window.goatcounter = { no_onload: true }
 
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://gc.zgo.at/count.js';
-  script.setAttribute('data-goatcounter', 'https://' + SITE_CODE + '.goatcounter.com/count');
-  script.onload = countView;
-  document.head.appendChild(script);
+  var script = document.createElement('script')
+  script.async = true
+  script.src = 'https://gc.zgo.at/count.js'
+  script.setAttribute('data-goatcounter', 'https://' + SITE_CODE + '.goatcounter.com/count')
+  script.onload = countView
+  document.head.appendChild(script)
 
   // Both builds switch views with the hash (#summary), so count each change.
-  window.addEventListener('hashchange', countView);
+  window.addEventListener('hashchange', countView)
 
   function countView() {
     if (window.goatcounter && window.goatcounter.count) {
-      window.goatcounter.count({ path: location.hash || location.pathname });
+      window.goatcounter.count({ path: location.hash || location.pathname })
     }
   }
 
   function isOptedOut() {
     try {
-      return localStorage.getItem('goatcounter_ignore') === '1';
+      return localStorage.getItem('goatcounter_ignore') === '1'
     } catch (e) {
-      return false;
+      return false
     }
   }
-})();
+})()
