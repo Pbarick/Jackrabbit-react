@@ -1,6 +1,6 @@
 # Jack Rabbit Dashboard (React)
 
-![Jack Rabbit Dashboard screenshot](docs/thumbnail.png)
+![Jack Rabbit Dashboard: from Figma design to React components and responsive views](docs/thumbnail.png)
 
 A React dashboard for the Jack Rabbit design challenge. It has a main dashboard and a datagrid page with an infinite, sortable AG Grid. The layout, colours and components follow the supplied design, and the same UI is also built as plain HTML, CSS and JavaScript in a separate repository.
 
